@@ -6,6 +6,7 @@ var sass = require('gulp-sass');
 var bower = require('main-bower-files');
 var normalizeBower = require('gulp-bower-normalize');
 var jshint = require('gulp-jshint');
+var templateCache = require('gulp-angular-templatecache');
 
 gulp.task('default', ['build']);
 
@@ -50,20 +51,28 @@ gulp.task('watch:bower', ['build:bower'], function () {
 	gulp.watch('bower.json', ['build:bower']);
 });
 
+gulp.task('build:js:templates', [], function () {
+	return gulp.src('src/js/**/*.html')
+		.pipe(templateCache('templates.js', {
+			module: 'app'
+		}))
+		.pipe(gulp.dest('.tmp'));
+});
+
 gulp.task('check:js', [], function () {
 	return gulp.src('src/js/**/*.js')
 		.pipe(jshint())
 		.pipe(jshint.reporter());
 });
 
-gulp.task('build:js', ['check:js'], function () {
-	return gulp.src(['!src/js/**/*.spec.js', 'src/js/**/*.module.js', 'src/js/**/*.js'])
+gulp.task('build:js', ['check:js', 'build:js:templates'], function () {
+	return gulp.src(['!src/js/**/*.spec.js', 'src/js/**/*.module.js', 'src/js/**/*.js', '.tmp/templates.js'])
 		.pipe(concat('main.js'))
 		.pipe(gulp.dest('dist/assets/js'));
 });
 
 gulp.task('watch:js', ['build:js'], function () {
-	gulp.watch('src/js/**/*.js', ['build:js']);
+	gulp.watch(['src/js/**/*.js', 'src/js/**/*.html'], ['build:js']);
 });
 
 gulp.task('build:html', [], function () {
