@@ -1,0 +1,19 @@
+{
+  "name": "angular-starter-normal",
+  "version": "1.0.0",
+  "description": "Angular JS project starter template for slightly more scalable cases",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/reykjavikingur/angular-starter-normal.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/reykjavikingur/angular-starter-normal/issues"
+  },
+  "homepage": "https://github.com/reykjavikingur/angular-starter-normal"
+}
