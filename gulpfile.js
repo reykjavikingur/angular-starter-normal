@@ -5,6 +5,7 @@ var browserSync = require('browser-sync');
 var sass = require('gulp-sass');
 var bower = require('main-bower-files');
 var normalizeBower = require('gulp-bower-normalize');
+var jshint = require('gulp-jshint');
 
 gulp.task('default', ['build']);
 
@@ -24,6 +25,9 @@ gulp.task('watch:assets', ['build:assets'], function () {
 gulp.task('build:css', [], function () {
 	return gulp.src('src/scss/**/*.scss')
 		.pipe(sass())
+		.on('error', function (error) {
+			console.error('SASS Error:', error.message);
+		})
 		.pipe(gulp.dest('dist/assets/css'));
 });
 
@@ -46,7 +50,13 @@ gulp.task('watch:bower', ['build:bower'], function () {
 	gulp.watch('bower.json', ['build:bower']);
 });
 
-gulp.task('build:js', [], function () {
+gulp.task('check:js', [], function () {
+	return gulp.src('src/js/**/*.js')
+		.pipe(jshint())
+		.pipe(jshint.reporter());
+});
+
+gulp.task('build:js', ['check:js'], function () {
 	return gulp.src(['!src/js/**/*.spec.js', 'src/js/**/*.module.js', 'src/js/**/*.js'])
 		.pipe(concat('main.js'))
 		.pipe(gulp.dest('dist/assets/js'));

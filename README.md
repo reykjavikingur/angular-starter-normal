@@ -6,10 +6,17 @@ Angular JS project starter template for slightly more scalable cases
 
 `npm install`
 
-This will also generate the build artifacts.
+Along with normal installation, also generates build artifacts.
 
 # Usage
 
 `npm start`
 
-This will start a web server hosting the build artifacts.
+Starts web server hosting build artifacts, opens browser with live reloading, and watches files for changes.
+
+# Source Files and Build Artifacts
+
+* `src/index.html` and `src/assets/**/*` are copied to `dist`
+* `src/js/**/*.js` are concatenated to create `dist/assets/js/main.js`
+* `src/scss/**/*.scss` are concatenated to create `dist/assets/css/*.css`
+* All Bower components are normalized and copied to `dist/assets/vendor`
