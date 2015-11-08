@@ -61,7 +61,8 @@ gulp.task('check:js', [], function() {
 gulp.task('build:js:templates', [], folders('src/js', function(folder) {
 	return gulp.src('src/js/' + folder + '/**/*.html')
 		.pipe(templateCache(folder + '.templates.js', {
-			module: folder
+			module: folder,
+			root: folder
 		}))
 		.pipe(gulp.dest('.tmp'));
 }));
