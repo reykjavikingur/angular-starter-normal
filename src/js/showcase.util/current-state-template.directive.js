@@ -1,4 +1,4 @@
-angular.module('showcase').directive('scCurrentStateTemplate', function ($state, stateMarkupUtil) {
+angular.module('showcase.util').directive('scCurrentStateTemplate', function ($state, stateMarkupUtil) {
 
 	return {
 		link: postLink

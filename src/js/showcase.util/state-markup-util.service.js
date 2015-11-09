@@ -1,4 +1,4 @@
-angular.module('showcase').service('stateMarkupUtil', function ($templateCache, $controller) {
+angular.module('showcase.util').service('stateMarkupUtil', function ($templateCache, $controller) {
 
 	this.getTemplateMarkup = function getTemplateMarkup(state) {
 		var string;

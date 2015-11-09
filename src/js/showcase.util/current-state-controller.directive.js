@@ -1,4 +1,4 @@
-angular.module('showcase').directive('scCurrentStateController', function ($state, stateMarkupUtil) {
+angular.module('showcase.util').directive('scCurrentStateController', function ($state, stateMarkupUtil) {
 
 	return {
 		link: postLink
