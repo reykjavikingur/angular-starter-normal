@@ -1,4 +1,4 @@
-angular.module('showcase').directive('scCurrentStateController', function($state, $templateCache) {
+angular.module('showcase').directive('scCurrentStateController', function ($state, stateMarkupUtil) {
 
 	return {
 		link: postLink
@@ -6,23 +6,15 @@ angular.module('showcase').directive('scCurrentStateController', function($state
 
 	function postLink(scope, iElement, iAttributes) {
 
-		show(getController($state.current));
+		showController($state.current);
 
-		scope.$on('$stateChangeSuccess', function(event, toState) {
-			show(getController(toState));
+		scope.$on('$stateChangeSuccess', function (event, toState) {
+			showController(toState);
 		});
 
-		function getController(state) {
-			if (state.controller) {
-				return state.controller;
-			}
-			else {
-				return '';
-			}
-		}
-
-		function show(contents) {
-			iElement.text(contents);
+		function showController(state) {
+			var html = stateMarkupUtil.getControllerMarkup(state, scope);
+			iElement.html(html);
 		}
 
 	}

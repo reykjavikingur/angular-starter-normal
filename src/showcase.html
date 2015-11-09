@@ -1,20 +1,31 @@
 <!DOCTYPE html>
 <html ng-app="showcase">
 <head>
-<link rel="stylesheet" type="text/css" href="assets/css/main.css" />
+<link rel="stylesheet" type="text/css" href="assets/css/showcase.css" />
 </head>
 <body>
 
 <h1>Showcase</h1>
 
-<ul sc-state-link-list>
-</ul>
+<nav>
+	<ul sc-state-link-list></ul>
+</nav>
 
-<div class="demo" ui-view></div>
+<main>
 
-<div class="template" sc-current-state-template></div>
+	<article class="demo" ui-view></article>
 
-<div class="controller" sc-current-state-controller></div>
+	<aside class="template">
+		<h2>template</h2>
+		<div class="codeblock" sc-current-state-template></div>
+	</aside>
+
+	<aside class="controller">
+		<h2>controller</h2>
+		<div class="codeblock" sc-current-state-controller></div>
+	</aside>
+
+</main>
 
 <script type="text/javascript" src="assets/vendor/js/underscore.js"></script>
 <script type="text/javascript" src="assets/vendor/js/jquery.js"></script>
