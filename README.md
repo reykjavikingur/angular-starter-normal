@@ -16,7 +16,9 @@ Starts web server hosting build artifacts, opens browser with live reloading, an
 
 # Source Files and Build Artifacts
 
-* `src/index.html` and `src/assets/**/*` are copied to `dist`
-* `src/js/**/*.js` are concatenated to create `dist/assets/js/main.js`
+* `src/*.html` and `src/assets/**/*` are copied to `dist`
+* `src/js/**/*.js` are concatenated to create `dist/assets/js/*.js`
+** Each directory `src/js/{name}` maps to `dist/assets/js/{name}.js`
+** The templates `src/js/**/*.html` are put in $templateCache
 * `src/scss/**/*.scss` are concatenated to create `dist/assets/css/*.css`
 * All Bower components are normalized and copied to `dist/assets/vendor`
