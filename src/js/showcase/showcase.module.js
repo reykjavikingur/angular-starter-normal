@@ -1,1 +1,1 @@
-angular.module('showcase', ['app']);
+angular.module('showcase', ['ui.router']);
