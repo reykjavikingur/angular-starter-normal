@@ -8,6 +8,8 @@ var normalizeBower = require('gulp-bower-normalize');
 var jshint = require('gulp-jshint');
 var templateCache = require('gulp-angular-templatecache');
 var folders = require('gulp-folders');
+var browserify = require('browserify');
+var source = require('vinyl-source-stream');
 
 gulp.task('default', ['build']);
 
@@ -52,6 +54,20 @@ gulp.task('watch:bower', ['build:bower'], function () {
 	gulp.watch('bower.json', ['build:bower']);
 });
 
+gulp.task('build:browserify', [], function () {
+	return browserify('src/node/node_modules.js')
+		.bundle()
+		.on('error', function (error) {
+			console.error('Browserify error:', error.message);
+		})
+		.pipe(source('node_modules.js'))
+		.pipe(gulp.dest('dist/assets/js'));
+});
+
+gulp.task('watch:browserify', ['build:browserify'], function () {
+	gulp.watch('src/node/node_modules.js', ['build:browserify'])
+});
+
 gulp.task('check:js', [], function () {
 	return gulp.src('src/js/**/*.js')
 		.pipe(jshint())
@@ -91,9 +107,9 @@ gulp.task('watch:html', ['build:html'], function () {
 	gulp.watch('src/*.html', ['build:html']);
 });
 
-gulp.task('build', ['build:assets', 'build:css', 'build:bower', 'build:js', 'build:html']);
+gulp.task('build', ['build:assets', 'build:css', 'build:bower', 'build:browserify', 'build:js', 'build:html']);
 
-gulp.task('watch', ['watch:assets', 'watch:css', 'watch:bower', 'watch:js', 'watch:html']);
+gulp.task('watch', ['watch:assets', 'watch:css', 'watch:bower', 'watch:browserify', 'watch:js', 'watch:html']);
 
 gulp.task('serve', ['watch'], function () {
 	browserSync({

@@ -22,3 +22,4 @@ Starts web server hosting build artifacts, opens browser with live reloading, an
 ** The templates `src/js/**/*.html` are put in $templateCache
 * `src/scss/**/*.scss` are concatenated to create `dist/assets/css/*.css`
 * All Bower components are normalized and copied to `dist/assets/vendor`
+* `src/js/node/node_modules.js` is the `browserify`'d adapter to convert Node modules to injectable Angular values
