@@ -26,7 +26,7 @@ angular.module('showcase.util').service('stateMarkupUtil', function ($templateCa
 	};
 
 	function text2html(text) {
-		return text.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/\n/g, '<br/>').replace(/ /g, '&nbsp;');
+		return text.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/\n/g, '<br/>').replace(/ /g, '&nbsp;').replace(/\t/g, '&nbsp;&nbsp;&nbsp;');
 	}
 
 });
