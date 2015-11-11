@@ -1,10 +1,10 @@
 angular.module('app').controller('mainAppController', function ($scope, appStore, appDispatcher, appAction) {
 
-	var unwatchMessage = appStore.watch('message', function(message) {
-		$scope.$evalAsync(function(){
+	var unwatchMessage = appStore.watch('message', function (message) {
+		$scope.$evalAsync(function () {
 			$scope.message = message;
-		})
-	})
+		});
+	});
 
 	$scope.$on('$destroy', function () {
 		unwatchMessage();

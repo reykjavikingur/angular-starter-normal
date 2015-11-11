@@ -111,7 +111,7 @@ gulp.task('build', ['build:assets', 'build:css', 'build:bower', 'build:browserif
 
 gulp.task('watch', ['watch:assets', 'watch:css', 'watch:bower', 'watch:browserify', 'watch:js', 'watch:html']);
 
-gulp.task('serve', ['watch'], function () {
+gulp.task('serve', ['watch'], function (cb) {
 	browserSync({
 		server: {
 			baseDir: 'dist'
@@ -119,7 +119,6 @@ gulp.task('serve', ['watch'], function () {
 		files: ['dist/**/*'],
 		reloadDelay: 1000,
 		reloadDebounce: 1000,
-		open: 'local',
-		startPath: '/showcase.html'
-	});
+		open: 'local'
+	}, cb);
 });
