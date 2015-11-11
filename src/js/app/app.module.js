@@ -1,1 +1,1 @@
-angular.module('app', ['ui.router', 'node_modules']);
+angular.module('app', ['ui.router', 'node_modules', 'flux-lite']);

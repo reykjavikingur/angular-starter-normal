@@ -1,11 +1,13 @@
 angular.module('app').controller('mainAppController', function ($scope, appStore, appDispatcher, appAction) {
 
-	_receiveMessage(appStore.getMessage());
-
-	appStore.on(appStore.MESSAGE_CHANGED, _receiveMessage);
+	var unwatchMessage = appStore.watch('message', function(message) {
+		$scope.$evalAsync(function(){
+			$scope.message = message;
+		})
+	})
 
 	$scope.$on('$destroy', function () {
-		appStore.on(appStore.MESSAGE_CHANGED, _receiveMessage);
+		unwatchMessage();
 	});
 
 	$scope.notify = function notify() {
@@ -15,11 +17,5 @@ angular.module('app').controller('mainAppController', function ($scope, appStore
 	$scope.dismiss = function dismiss() {
 		appDispatcher.emit(appAction.DISMISS);
 	};
-
-	function _receiveMessage(message) {
-		$scope.$evalAsync(function () {
-			$scope.message = message;
-		});
-	}
 
 });

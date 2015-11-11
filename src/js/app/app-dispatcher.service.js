@@ -1,7 +1,5 @@
-angular.module('app').factory('appDispatcher', function (EventEmitter) {
+angular.module('app').factory('appDispatcher', function (dispatcherFactory, EventEmitter) {
 
-	return EventEmitter({
-
-	});
+	return dispatcherFactory();
 
 });

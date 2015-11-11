@@ -1,0 +1,1 @@
+angular.module('flux-lite', ['node_modules']);

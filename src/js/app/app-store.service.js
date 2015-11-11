@@ -1,25 +1,13 @@
-angular.module('app').factory('appStore', function (appDispatcher, appAction, EventEmitter) {
+angular.module('app').factory('appStore', function (appDispatcher, storeFactory, appAction) {
 
-	var _message;
-
-	var appStore = EventEmitter({
-
-		MESSAGE_CHANGED: 'messageChanged',
-
-		getMessage: function getMessage() {
-			return _message;
-		}
-
-	});
+	var appStore = storeFactory();
 
 	appDispatcher.on(appAction.NOTIFY, function (message) {
-		_message = message;
-		appStore.emit(appStore.MESSAGE_CHANGED, _message);
+		appStore.commit('message', message);
 	});
 
 	appDispatcher.on(appAction.DISMISS, function () {
-		_message = null;
-		appStore.emit(appStore.MESSAGE_CHANGED, _message);
+		appStore.commit('message', null);
 	});
 
 	return appStore;
